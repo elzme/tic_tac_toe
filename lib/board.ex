@@ -11,11 +11,11 @@ defmodule Board do
   end
 
   def display_sample_board do
-    """
-    1 | 2 | 3
-    4 | 5 | 6
-    7 | 8 | 9
-    """
+    " 1 | 2 | 3 \n" <>
+    " ___________ \n" <>
+    " 4 | 5 | 6 \n" <>
+    " ___________ \n" <>
+    " 7 | 8 | 9 "
   end
 
   #TODO: need to check that the position the user enters is valid, using open_position?
@@ -32,4 +32,13 @@ defmodule Board do
     Enum.any?(current_board, fn(x) -> x == @blank_space end)
   end
 
+  def display_current_board(current_board) do
+    tuple = to_tuple(current_board)
+    " #{elem(tuple, 0)} | #{elem(tuple, 1)} | #{elem(tuple, 2)} \n" <>
+    " ___________ \n" <>
+    " #{elem(tuple, 3)} | #{elem(tuple, 4)} | #{elem(tuple, 5)} \n" <>
+    " ___________ \n" <>
+    " #{elem(tuple, 6)} | #{elem(tuple, 7)} | #{elem(tuple, 8)} "
+
+  end
 end

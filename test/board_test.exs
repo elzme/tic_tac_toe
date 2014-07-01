@@ -8,12 +8,22 @@ defmodule BoardTest do
   end
 
   test "it returns a sample board for the beginning of the game" do
-    assert Board.display_sample_board ==
-      """
-      1 | 2 | 3
-      4 | 5 | 6
-      7 | 8 | 9
-      """
+    assert Board.display_sample_board == " 1 | 2 | 3 \n" <>
+                                       " ___________ \n" <>
+                                        " 4 | 5 | 6 \n" <>
+                                       " ___________ \n" <>
+                                         " 7 | 8 | 9 "
+  end
+
+  test "it returns the current board for display" do
+    current_board = ["", "", "",
+                     "X", "", "",
+                     "", "", ""]
+    assert Board.display_current_board(current_board) == "  |  |  \n" <>
+                                                        " ___________ \n" <>
+                                                         " X |  |  \n" <>
+                                                        " ___________ \n" <>
+                                                         "  |  |  "
   end
 
   test "it updates the board with the given mark at the given position" do

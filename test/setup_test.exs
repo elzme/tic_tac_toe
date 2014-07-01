@@ -14,11 +14,11 @@ defmodule SetupTest do
   end
 
   test "it prints out a display board" do
-    assert capture_io(fn -> Setup.print_display_board end) == """
-                                                              Here's what the board looks like:
-                                                              1 | 2 | 3
-                                                              4 | 5 | 6
-                                                              7 | 8 | 9
-                                                              """
+    assert capture_io(fn -> Setup.print_display_board end) == "Here's what the board looks like:\n" <>
+                                                              " 1 | 2 | 3 \n" <>
+                                                              " ___________ \n" <>
+                                                              " 4 | 5 | 6 \n" <>
+                                                              " ___________ \n" <>
+                                                              " 7 | 8 | 9 "
   end
 end
