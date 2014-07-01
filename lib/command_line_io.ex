@@ -1,11 +1,10 @@
 defmodule CommandLineIO do
 
-  def display_output(msg) do
-    IO.puts(msg)
+  def write(msg) do
+    IO.write(msg)
   end
 
-  def get_input(msg) do
+  def gets(msg) do
     IO.gets(msg)
   end
-
 end

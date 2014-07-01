@@ -1,17 +1,15 @@
 defmodule CommandLineIOTest do
-
   use ExUnit.Case
   import ExUnit.CaptureIO
 
-  test "it prints to the console" do
-    assert capture_io(fn ->
-      CommandLineIO.display_output("welcome to ttt")
-    end) == "welcome to ttt\n"
+  test "displays the given message" do
+    assert capture_io(fn -> CommandLineIO.write("test") end) == "test"
   end
 
-  test "it gets input from the console" do
-    assert capture_io(fn ->
-      CommandLineIO.get_input("Please enter your next move:")
-    end) == "Please enter your next move:"
+  test "gets input from the user" do
+    assert capture_io("input from command line", fn ->
+      input = CommandLineIO.gets("prompt: ")
+      IO.write input
+    end) == "prompt: input from command line"
   end
 end
