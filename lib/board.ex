@@ -10,7 +10,7 @@ defmodule Board do
      @blank_space, @blank_space, @blank_space]
   end
 
-  def display_board do
+  def display_sample_board do
     """
     1 | 2 | 3
     4 | 5 | 6

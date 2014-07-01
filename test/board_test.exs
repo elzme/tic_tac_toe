@@ -7,8 +7,8 @@ defmodule BoardTest do
                                           "", "", ""]
   end
 
-  test "it returns a display board for the beginning of the game" do
-    assert Board.display_board ==
+  test "it returns a sample board for the beginning of the game" do
+    assert Board.display_sample_board ==
       """
       1 | 2 | 3
       4 | 5 | 6
