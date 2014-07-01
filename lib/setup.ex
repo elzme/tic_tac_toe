@@ -13,7 +13,7 @@ defmodule Setup do
     @io.write("Here's what the board looks like:\n#{Board.display_sample_board}")
   end
 
-  def setup_game(io) do
+  def setup_game do
     print_welcome
     get_first_or_second
     print_display_board
