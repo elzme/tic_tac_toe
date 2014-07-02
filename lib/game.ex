@@ -1,9 +1,8 @@
 defmodule Game do
 
   def new_game do #NOT TESTED
-    Setup.setup_game
-    players = Setup.create_players
-    game_loop(Board.generate_blank_board, List.first(players))
+    first_or_second? = Setup.setup_game
+    game_loop(Board.generate_blank_board, set_first_player(first_or_second?))
   end
 
   def game_loop(current_board, current_player) do #NOT TESTED
@@ -17,6 +16,14 @@ defmodule Game do
       #play_again?
     else
       game_loop(updated_board, next_player)
+    end
+  end
+
+  def set_first_player(answer_from_user) do
+    if answer_from_user == "first" || answer_from_user == "First" do
+      %Player{}
+    else
+      %Player{type: :computer, mark: "O"}
     end
   end
 
