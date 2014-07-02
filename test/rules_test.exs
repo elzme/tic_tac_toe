@@ -42,10 +42,18 @@ defmodule RulesTest do
                      "O", "O", "X"]
     assert Rules.valid_move?(current_board, "10") == false
   end
-  test "#valid_move?: returns false if the move is not blank (with an integer )" do
+
+  test "#valid_move?: returns false if the move is not blank (with an integer)" do
     current_board = ["X", "X", "O",
                      "X", "", "X",
                      "O", "O", "X"]
     assert Rules.valid_move?(current_board, 0) == false
+  end
+
+  test "#valid_move?: returns false if the player enters string that isn't a number" do
+    current_board = ["X", "X", "O",
+                     "X", "", "X",
+                     "O", "O", "X"]
+    assert Rules.valid_move?(current_board, "hey") == false
   end
 end
