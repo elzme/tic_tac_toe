@@ -21,4 +21,8 @@ defmodule SetupTest do
                                                               " ___________ \n" <>
                                                               " 7 | 8 | 9 "
   end
+
+  test "create_players" do
+    assert Setup.create_players == [%Player{}, %Player{type: :computer, mark: "O"}]
+  end
 end

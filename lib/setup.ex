@@ -18,4 +18,8 @@ defmodule Setup do
     get_first_or_second
     print_display_board
   end
+
+  def create_players do
+    [%Player{}, %Player{type: :computer, mark: "O"}]
+  end
 end
