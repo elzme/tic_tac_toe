@@ -72,12 +72,12 @@ defmodule RulesTest do
     assert Rules.winner_in_line?(current_board, line) == false
   end
 
-  test "#winner_in_line?: returns true if the given line is a winner" do
+  test "#winner_in_line?: returns the line if it is a winner" do
     line = [0, 1, 2]
     current_board = ["X", "X", "X",
                      "X", "", "X",
                      "O", "O", "X"]
-    assert Rules.winner_in_line?(current_board, line) == true
+    assert Rules.winner_in_line?(current_board, line) == line
   end
 
   test "#winner_in_line?: returns false if the line is not a winner (contains some empty spaces)" do
@@ -101,7 +101,7 @@ defmodule RulesTest do
     current_board = ["X", "O", "X",
                      "X", "X", "X",
                      "O", "O", "X"]
-    assert Rules.winner_in_line?(current_board, line) == true
+    assert Rules.winner_in_line?(current_board, line) == line
   end
 
   test "#winner_on_board?: returns true if there is a winner anywhere on the board" do
@@ -111,4 +111,24 @@ defmodule RulesTest do
     assert Rules.winner_on_board?(current_board) == true
   end
 
+  test "#who_wins?: returns `O` if the computer wins" do
+    current_board = ["X", "X", "",
+                     "X", "", "X",
+                     "O", "O", "O"]
+    assert Rules.who_wins?(current_board) == "O"
+  end
+
+  test "#who_wins?: returns `X` if the human player wins" do
+    current_board = ["X", "X", "X",
+                     "X", "", "X",
+                     "O", "O", ""]
+    assert Rules.who_wins?(current_board) == "X"
+  end
+
+  test "#who_wins?: returns nil if its a tie" do
+    current_board = ["X", "O", "X",
+                     "X", "O", "X",
+                     "O", "X", "O"]
+    assert Rules.who_wins?(current_board) == "tie"
+  end
 end
