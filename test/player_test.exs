@@ -2,7 +2,7 @@ defmodule PlayerTest do
   use ExUnit.Case
   import ExUnit.CaptureIO
 
-  test "it gets the human's move when they are the current player" do
+  test "#get_move: gets the human's move when they are the current player" do
     current_board = ["", "", "",
                      "X", "", "",
                      "", "", ""]
@@ -12,7 +12,7 @@ defmodule PlayerTest do
     end) == "Please enter your move (1 - 9):\n1"
   end
 
-  test "it gets the computers move when it is the current player" do
+  test "#get_move: gets the computers move when it is the current player" do
     current_board = ["X", "X", "X",
                      "X", "X", "X",
                      "X", "X", ""]
