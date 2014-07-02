@@ -3,14 +3,14 @@ defmodule SetupTest do
   import ExUnit.CaptureIO
 
   test "it prints a welcome" do
-    assert capture_io(fn -> Setup.print_welcome end) == "Welcome to Elixir Tic Tac Toe! Would you like to go first or second?"
+    assert capture_io(fn -> Setup.print_welcome end) == "Welcome to Elixir Tic Tac Toe!"
   end
 
   test "it gets if the user would like to go first or second" do
     assert capture_io("first", fn ->
        input = Setup.get_first_or_second
        IO.write input
-    end) == "> first"
+    end) == "Would you like to go first or second?\n first"
   end
 
   test "it prints out a display board" do

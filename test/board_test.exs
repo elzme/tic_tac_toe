@@ -1,7 +1,7 @@
 defmodule BoardTest do
   use ExUnit.Case
 
-  test "it returns a blank board map" do
+  test "it returns a blank board" do
     assert Board.generate_blank_board == ["", "", "",
                                           "", "", "",
                                           "", "", ""]

@@ -2,11 +2,11 @@ defmodule Setup do
   @io  CommandLineIO
 
   def print_welcome do
-    @io.write("Welcome to Elixir Tic Tac Toe! Would you like to go first or second?")
+    @io.write("Welcome to Elixir Tic Tac Toe!")
   end
 
   def get_first_or_second do
-    @io.gets("> ")
+    @io.gets("Would you like to go first or second?\n ")
   end
 
   def print_display_board do
