@@ -20,7 +20,7 @@ defmodule Board do
 
   #TODO: need to check that the position the user enters is valid, using open_position?
 
-  def update_board(current_board, position, mark) do
+  def update(current_board, position, mark) do
     replace_at(current_board, position, mark)
   end
 
@@ -32,13 +32,13 @@ defmodule Board do
     Enum.any?(current_board, fn(x) -> x == @blank_space end)
   end
 
-  def display_current_board(current_board) do
+  def display(current_board) do
     tuple = to_tuple(current_board)
     " #{elem(tuple, 0)} | #{elem(tuple, 1)} | #{elem(tuple, 2)} \n" <>
     " ___________ \n" <>
     " #{elem(tuple, 3)} | #{elem(tuple, 4)} | #{elem(tuple, 5)} \n" <>
     " ___________ \n" <>
-    " #{elem(tuple, 6)} | #{elem(tuple, 7)} | #{elem(tuple, 8)} "
+    " #{elem(tuple, 6)} | #{elem(tuple, 7)} | #{elem(tuple, 8)} \n"
 
   end
 end

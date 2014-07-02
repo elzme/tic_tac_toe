@@ -19,18 +19,18 @@ defmodule BoardTest do
     current_board = ["", "", "",
                      "X", "", "",
                      "", "", ""]
-    assert Board.display_current_board(current_board) == "  |  |  \n" <>
+    assert Board.display(current_board) == "  |  |  \n" <>
                                                         " ___________ \n" <>
                                                          " X |  |  \n" <>
                                                         " ___________ \n" <>
-                                                         "  |  |  "
+                                                         "  |  |  \n"
   end
 
   test "it updates the board with the given mark at the given position" do
      current_board = ["", "", "",
                       "X", "", "",
                       "", "", ""]
-     assert Board.update_board(current_board, 1, "X") ==  ["", "X", "",
+     assert Board.update(current_board, 1, "X") ==  ["", "X", "",
                                                           "X", "", "",
                                                           "", "", ""]
 
