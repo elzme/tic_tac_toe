@@ -12,7 +12,7 @@ defmodule Game do
     next_player = switch_player(current_player)
     if Rules.game_over?(updated_board) do
       #game over stuff:
-      CommandLineIO.write("\nCurrent Board:\n#{Board.display(updated_board)}\nGame over!")
+      CommandLineIO.write("\nCurrent Board:\n#{Board.display(updated_board)}\n#{create_game_over_message(updated_board)}")
       #play_again?
     else
       game_loop(updated_board, next_player)
@@ -35,6 +35,17 @@ defmodule Game do
     end
   end
 
+  def create_game_over_message(current_board) do
+    result = Rules.who_wins?(current_board)
+    cond do
+      result == "O" ->
+        "Game over! The computer won!"
+      result == "X" ->
+        "Game over! You won!"
+      result == "tie" ->
+        "Game over! It's a tie!"
+    end
+  end
   #def play_again?
   #response = CommandLineIO.gets("Would you like to play again?")
   #if response == "yes"
