@@ -19,7 +19,7 @@ defmodule SetupTest do
                                                               " ___________ \n" <>
                                                               " 4 | 5 | 6 \n" <>
                                                               " ___________ \n" <>
-                                                              " 7 | 8 | 9 "
+                                                              " 7 | 8 | 9 \n"
   end
 
   test "#create_players: creates a human and computer player" do

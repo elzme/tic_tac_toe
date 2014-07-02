@@ -1,4 +1,5 @@
 defmodule Setup do
+  import String
   @io  CommandLineIO
 
   def print_welcome do
@@ -6,17 +7,17 @@ defmodule Setup do
   end
 
   def get_first_or_second do
-    @io.gets("Would you like to go first or second?\n ")
+    rstrip(@io.gets("Would you like to go first or second?\n "))
   end
 
   def print_display_board do
-    @io.write("Here's what the board looks like:\n#{Board.display_sample_board}")
+    @io.write("Here's what the board looks like:\n#{Board.display_sample_board}\n")
   end
 
   def setup_game do
     print_welcome
-    get_first_or_second
     print_display_board
+    get_first_or_second
   end
 
   def create_players do
