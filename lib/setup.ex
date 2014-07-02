@@ -2,7 +2,7 @@ defmodule Setup do
   @io  CommandLineIO
 
   def print_welcome do
-    @io.write("Welcome to Elixir Tic Tac Toe!")
+    @io.write("Welcome to Elixir Tic Tac Toe!\n")
   end
 
   def get_first_or_second do
