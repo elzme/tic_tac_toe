@@ -13,9 +13,10 @@ defmodule PlayerTest do
   end
 
   test "#get_move: gets the computers move when it is the current player" do
-    current_board = ["X", "X", "X",
-                     "X", "X", "X",
-                     "X", "X", ""]
-    assert Player.get_move(%Player{type: :computer, mark: "O"}, current_board) == 8
+    current_board = ["", "", "",
+                     "", "", "",
+                     "", "", ""]
+    computer_move = Player.get_move(%Player{type: :computer, mark: "O"}, current_board)
+    assert is_integer(computer_move) == true
   end
 end

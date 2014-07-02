@@ -13,7 +13,12 @@ defmodule Player do
   end
 
   def get_computer_player_move(current_board) do
-    8
+    position = :crypto.rand_uniform(0,8)
+    if Rules.valid_move?(current_board, position) do
+      position
+    else
+      get_computer_player_move(current_board)
+    end
   end
 
   defp get_human_player_move(player, current_board) do
@@ -21,7 +26,7 @@ defmodule Player do
     if Rules.valid_move?(current_board, position) do
       to_integer(position)
     else
-      get_move(player, current_board)
+      get_human_player_move(player, current_board)
     end
   end
 end

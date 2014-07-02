@@ -29,11 +29,23 @@ defmodule RulesTest do
     assert Rules.valid_move?(current_board, "10") == false
   end
 
-  test "#valid_move?: returns false if the move is not a blank space on the board" do
+  test "#valid_move?: returns false if the move is not blank (with a string)" do
     current_board = ["X", "X", "O",
                      "X", "", "X",
                      "O", "O", "X"]
     assert Rules.valid_move?(current_board, "0") == false
   end
 
+  test "#valid_move?: returns false if the move is not between 0 and 8 (with an integer)" do
+    current_board = ["X", "X", "O",
+                     "X", "", "X",
+                     "O", "O", "X"]
+    assert Rules.valid_move?(current_board, "10") == false
+  end
+  test "#valid_move?: returns false if the move is not blank (with an integer )" do
+    current_board = ["X", "X", "O",
+                     "X", "", "X",
+                     "O", "O", "X"]
+    assert Rules.valid_move?(current_board, 0) == false
+  end
 end
