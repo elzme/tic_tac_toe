@@ -8,11 +8,11 @@ defmodule BoardTest do
   end
 
   test "#display_sample_board: returns a sample board for the beginning of the game" do
-    assert Board.display_sample_board == " 1 | 2 | 3 \n" <>
+    assert Board.display_sample_board == " 0 | 1 | 2 \n" <>
                                        " ___________ \n" <>
-                                        " 4 | 5 | 6 \n" <>
+                                        " 3 | 4 | 5 \n" <>
                                        " ___________ \n" <>
-                                         " 7 | 8 | 9 "
+                                         " 6 | 7 | 8 "
   end
 
   test "#display: returns the current board for display" do
@@ -44,7 +44,7 @@ defmodule BoardTest do
     assert Board.open_position?(current_board, 1) == true
   end
 
-  test "#blank_spaces_left: returns true if there are only blank spaces open" do
+  test "#blank_spaces_left?: returns true if there are only blank spaces open" do
     current_board = ["", "", "",
                      "", "", "",
                      "", "", ""]
@@ -58,7 +58,7 @@ defmodule BoardTest do
     assert Board.blank_spaces_left?(current_board) == true
   end
 
-  test "#blank_spaces_left: returns false if there are no blank spaces open" do
+  test "#blank_spaces_left?: returns false if there are no blank spaces open" do
     current_board = ["X", "X", "O",
                      "X", "O", "X",
                      "O", "O", "X"]
