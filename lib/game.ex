@@ -39,11 +39,11 @@ defmodule Game do
     result = Rules.who_wins?(current_board)
     cond do
       result == "O" ->
-        "Game over! The computer won!"
+        "Game over! The computer won!\n"
       result == "X" ->
-        "Game over! You won!"
+        "Game over! You won!\n"
       result == "tie" ->
-        "Game over! It's a tie!"
+        "Game over! It's a tie!\n"
     end
   end
 
@@ -51,8 +51,7 @@ defmodule Game do
     if rstrip(CommandLineIO.gets("Would you like to play again?\n")) == "yes" do
       new_game
     else
-      CommandLineIO.write("Bye!")
-      nil
+      CommandLineIO.write("Bye!\n")
     end
 
   end

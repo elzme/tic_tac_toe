@@ -22,35 +22,27 @@ defmodule GameTest do
     current_board = ["O", "O", "X",
                      "X", "O", "X",
                      "O", "X", "O"]
-    assert Game.create_game_over_message(current_board) == "Game over! The computer won!"
+    assert Game.create_game_over_message(current_board) == "Game over! The computer won!\n"
   end
 
   test "#create_game_over_message: tells the user that they won" do
     current_board = ["X", "X", "X",
                      "X", "O", "X",
                      "O", "X", "O"]
-    assert Game.create_game_over_message(current_board) == "Game over! You won!"
+    assert Game.create_game_over_message(current_board) == "Game over! You won!\n"
   end
 
   test "#create_game_over_message: tells the user its a tie" do
     current_board = ["X", "O", "X",
                      "X", "O", "X",
                      "O", "X", "O"]
-    assert Game.create_game_over_message(current_board) == "Game over! It's a tie!"
+    assert Game.create_game_over_message(current_board) == "Game over! It's a tie!\n"
   end
 
   test "#play_again?: ends the program if the users doesn't want to play another game" do
     assert capture_io("no", fn ->
       input = Game.play_again?
       IO.write input
-    end) == "Would you like to play again?\nBye!"
+    end) == "Would you like to play again?\nBye!\nok"
   end
-
-  #NOT SURE HOW TO TEST THIS
-  #  test "#play_again?: starts a new game if the user wants to play again" do
-  #    assert capture_io("yes", fn ->
-  #      input = Game.play_again?
-  #      IO.write input
-  #      end) == "Would you like to play again?\n!"
-  #  end
 end
