@@ -64,4 +64,18 @@ defmodule BoardTest do
                      "O", "O", "X"]
     assert Board.blank_spaces_left?(current_board) == false
   end
+
+  test "#get_blank_spaces: returns a list of all the blanks spaces left" do
+    current_board = ["", "X", "O",
+                     "X", "", "X",
+                     "O", "", "X"]
+    assert Board.get_blank_spaces(current_board) == [0, 4, 7]
+  end
+
+  test "#get_blank_spaces: returns an empty list if there are no blank spaces" do
+    current_board = ["X", "X", "O",
+                     "X", "X", "X",
+                     "O", "X", "X"]
+    assert Board.get_blank_spaces(current_board) == []
+  end
 end

@@ -18,8 +18,6 @@ defmodule Board do
     " 7 | 8 | 9 "
   end
 
-  #TODO: need to check that the position the user enters is valid, using open_position?
-
   def update(current_board, position, mark) do
     replace_at(current_board, position, mark)
   end
@@ -41,4 +39,10 @@ defmodule Board do
     " #{elem(tuple, 6)} | #{elem(tuple, 7)} | #{elem(tuple, 8)} \n"
 
   end
+
+  def get_blank_spaces(current_board) do
+    Enum.with_index(current_board)
+    |> Enum.filter_map(fn {x, _} -> x == "" end, fn {_, i} -> i end)
+  end
+
 end
