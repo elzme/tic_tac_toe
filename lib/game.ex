@@ -12,7 +12,6 @@ defmodule Game do
     updated_board = Board.update(current_board, position, current_player.mark)
     next_player = switch_player(current_player)
     if Rules.game_over?(updated_board) do
-      #game over stuff:
       CommandLineIO.write("\nCurrent Board:\n#{Board.display(updated_board)}\n#{create_game_over_message(updated_board)}")
       play_again?
     else
@@ -57,13 +56,4 @@ defmodule Game do
     end
 
   end
-
-  #def play_again?
-  #response = CommandLineIO.gets("Would you like to play again?")
-  #if response == "yes"
-  #  new_game do
-  #else
-  #  exit
-  #end
-
 end
