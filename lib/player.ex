@@ -7,9 +7,10 @@ defmodule Player do
     cond do
       player.type == :human ->
         get_human_player_move(player, current_board)
-      player.type == :computer ->
+      player.type == :smart_computer ->
         get_unbeatable_computer_player_move(current_board, player.mark)
-        #      get_easy_computer_player_move(current_board)
+      player.type == :dumb_computer ->
+         get_easy_computer_player_move(current_board)
     end
   end
 

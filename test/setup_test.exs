@@ -10,7 +10,7 @@ defmodule SetupTest do
     assert capture_io("first", fn ->
        input = Setup.get_first_or_second
        IO.write input
-    end) == "Would you like to go first or second?\n first"
+    end) == "Would you like to go first or second? Please enter 'first' or 'second'.\n first"
   end
 
   test "#print_display_board:  prints out a display board" do
@@ -22,7 +22,23 @@ defmodule SetupTest do
                                                               " 7 | 8 | 9 \n"
   end
 
-  test "#create_players: creates a human and computer player" do
-    assert Setup.create_players == [%Player{}, %Player{type: :computer, mark: "O"}]
+  test "#create_players: creates a human and a smart computer player" do
+    assert Setup.create_players("smart") == [%Player{}, %Player{type: :smart_computer, mark: "O"}]
   end
+
+  test "#create_players: creates a human and a dumb computer player" do
+    assert Setup.create_players("dumb") == [%Player{}, %Player{type: :dumb_computer, mark: "O"}]
+  end
+
+  test "#create_players: creates a human and a smart computer player, by default" do
+    assert Setup.create_players("misspelled word") == [%Player{}, %Player{type: :smart_computer, mark: "O"}]
+  end
+
+  test "#choose_opponent: " do
+    assert capture_io("smart", fn ->
+       input = Setup.choose_opponent
+       IO.write input
+    end) == "Would you like to play against the smart computer, or the dumb computer? Please enter 'smart' or 'dumb'.\n smart"
+  end
+
 end
