@@ -1,6 +1,7 @@
 defmodule Game do
   import String, only: [rstrip: 1]
   import List, only: [first: 1]
+  import Enum, only: [reverse: 1]
 
   def new_game do
     Setup.setup_new_game
@@ -15,7 +16,7 @@ defmodule Game do
       CommandLineIO.write("\nCurrent Board:\n#{Board.display(updated_board)}\n#{create_game_over_message(updated_board)}")
       play_again?
     else
-      game_loop(updated_board, Enum.reverse(players))
+      game_loop(updated_board, reverse(players))
     end
   end
 

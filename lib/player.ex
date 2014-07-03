@@ -1,5 +1,5 @@
 defmodule Player do
-  import String
+  import String, only: [rstrip: 1, to_integer: 1]
 
   defstruct type: :human, mark: "X"
 

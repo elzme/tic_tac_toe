@@ -1,6 +1,5 @@
 defmodule NegamaxTest do
   use ExUnit.Case
-  import ExUnit.CaptureIO
 
   test "#get_score: returns a 1 if the current player wins" do
     current_board = ["X", "X", "X",

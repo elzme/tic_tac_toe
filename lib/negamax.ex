@@ -1,4 +1,6 @@
 defmodule Negamax do
+  import Enum, only: [map: 2, max: 1]
+  import List, only: [first: 1, last: 1]
 
   def get_score(current_board, player_mark) do
     winner = Rules.who_wins?(current_board)
@@ -28,17 +30,17 @@ defmodule Negamax do
       [score_divided_by_depth, move]
     else
       #[score, depth, move]
-       [(-1 * (List.first(negamax(updated_board, switch_player_mark(player_mark), updated_depth)))), updated_depth, move]
+       [(-1 * (first(negamax(updated_board, switch_player_mark(player_mark), updated_depth)))), updated_depth, move]
     end
   end
 
   def negamax(current_board, player_mark, depth) do
     moves = Board.get_blank_spaces(current_board)
-    Enum.map(moves, fn(x) -> score_move(current_board, player_mark, x, depth) end)
-    |>Enum.max()
+    map(moves, fn(x) -> score_move(current_board, player_mark, x, depth) end)
+    |>max()
   end
 
   def get_best_move(current_board, computer_mark) do
-    List.last(negamax(current_board, "O", 0))
+    last(negamax(current_board, "O", 0))
   end
 end
