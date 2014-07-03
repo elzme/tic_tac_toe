@@ -8,7 +8,8 @@ defmodule Player do
       player.type == :human ->
         get_human_player_move(player, current_board)
       player.type == :computer ->
-        get_easy_computer_player_move(current_board)
+        get_unbeatable_computer_player_move(current_board, player.mark)
+        #      get_easy_computer_player_move(current_board)
     end
   end
 
@@ -19,6 +20,10 @@ defmodule Player do
     else
       get_easy_computer_player_move(current_board)
     end
+  end
+
+  def get_unbeatable_computer_player_move(current_board, computer_mark) do
+    get_best_move(current_board, computer_mark)
   end
 
   defp get_human_player_move(player, current_board) do
