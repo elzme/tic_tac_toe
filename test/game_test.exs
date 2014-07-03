@@ -10,21 +10,6 @@ defmodule GameTest do
     assert Game.switch_player(%Player{}) == %Player{type: :computer, mark: "O"}
   end
 
-  test "#set_first_player: sets the human player as the first if the user answers `first`" do
-    players = [%Player{}, %Player{type: :computer, mark: "O"}]
-    assert Game.set_first_player("first", players ) == [%Player{}, %Player{type: :computer, mark: "O"}]
-  end
-
-  test "#set_first_player: sets the computer player as the first if the user answers `second`" do
-    players = [%Player{}, %Player{type: :computer, mark: "O"}]
-    assert Game.set_first_player("second", players ) == [%Player{type: :computer, mark: "O"}, %Player{}]
-  end
-
-  test "#set_first_player: sets the human player as the first by default" do
-    players = [%Player{}, %Player{type: :computer, mark: "O"}]
-    assert Game.set_first_player("", players ) == [%Player{}, %Player{type: :computer, mark: "O"}]
-  end
-
   test "#create_game_over_message: tells the user that the computer won" do
     current_board = ["O", "O", "X",
                      "X", "O", "X",

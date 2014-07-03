@@ -1,18 +1,14 @@
 defmodule Game do
   import String, only: [rstrip: 1]
+  import List, only: [first: 1]
 
   def new_game do
-    Setup.setup_game
-    first_or_second? = Setup.get_first_or_second #this will return either 'first' or 'second'
-    opponent = Setup.choose_opponent #this will return either 'smart' or 'dumb'
-    players = Setup.create_players(opponent) #this will return a list with both players
-    set_first_player(players, first_or_second?) #this reverses the list if the user wants to go second
-    game_loop(Board.generate_blank_board, players)
+    Setup.setup_new_game
   end
 
   def game_loop(current_board, players) do
     CommandLineIO.write("\nCurrent Board:\n#{Board.display(current_board)}")
-    current_player = List.first(players)
+    current_player = first(players)
     position = Player.get_move(current_player, current_board)
     updated_board = Board.update(current_board, position, current_player.mark)
     if Rules.game_over?(updated_board) do
@@ -20,14 +16,6 @@ defmodule Game do
       play_again?
     else
       game_loop(updated_board, Enum.reverse(players))
-    end
-  end
-
-  def set_first_player(first_or_second, players) do
-    if first_or_second == "second" do
-       Enum.reverse(players)
-    else
-      players
     end
   end
 
@@ -57,6 +45,5 @@ defmodule Game do
     else
       CommandLineIO.write("Bye!\n")
     end
-
   end
 end
