@@ -19,4 +19,25 @@ defmodule PlayerTest do
     computer_move = Player.get_move(%Player{type: :computer, mark: "O"}, current_board)
     assert is_integer(computer_move) == true
   end
+
+  test "#get_score: returns a 1 if the current player wins" do
+    current_board = ["X", "X", "X",
+                     "", "", "",
+                     "", "", ""]
+    assert Player.get_score(current_board, "X") == 1
+  end
+
+  test "#get_score: returns a -1 if the current player loses" do
+    current_board = ["X", "X", "X",
+                     "", "", "",
+                     "", "", ""]
+    assert Player.get_score(current_board, "O") == -1
+  end
+
+  test "#get_score: returns a 0 if the game ends in a tie" do
+    current_board = ["X", "X", "X",
+                     "", "", "",
+                     "", "", ""]
+    assert Player.get_score(current_board, "O") == -1
+  end
 end

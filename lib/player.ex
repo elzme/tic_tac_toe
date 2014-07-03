@@ -29,4 +29,16 @@ defmodule Player do
       get_human_player_move(player, current_board)
     end
   end
+
+  def get_score(current_board, player_mark) do
+    winner = Rules.who_wins?(current_board)
+    cond do
+      winner == player_mark ->
+        1
+      (winner != player_mark && Rules.winner_on_board?(current_board)) ->
+       -1
+      true ->
+        0
+    end
+  end
 end
