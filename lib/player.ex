@@ -8,16 +8,16 @@ defmodule Player do
       player.type == :human ->
         get_human_player_move(player, current_board)
       player.type == :computer ->
-        get_computer_player_move(current_board)
+        get_easy_computer_player_move(current_board)
     end
   end
 
-  def get_computer_player_move(current_board) do
+  defp get_easy_computer_player_move(current_board) do
     position = :crypto.rand_uniform(0,8)
     if Rules.valid_move?(current_board, position) do
       position
     else
-      get_computer_player_move(current_board)
+      get_easy_computer_player_move(current_board)
     end
   end
 
