@@ -41,4 +41,31 @@ defmodule Player do
         0
     end
   end
+
+  def switch_player_mark(current_player_mark) do
+    if current_player_mark == "X" do
+      "O"
+    else
+      "X"
+    end
+  end
+
+  def score_move(current_board, player_mark, move) do
+    updated_board = Board.update(current_board, move, player_mark)
+    if Rules.game_over?(updated_board) do
+      [get_score(updated_board, player_mark), move]
+    else
+       [(-1 * (List.first(negamax(updated_board, switch_player_mark(player_mark))))), move]
+    end
+  end
+
+  def negamax(current_board, player_mark) do
+    moves = Board.get_blank_spaces(current_board)
+    Enum.map(moves, fn(x) -> score_move(current_board, player_mark, x) end)
+    |>Enum.max()
+  end
+
+  def get_best_move(current_board, computer_mark) do
+    List.last(negamax(current_board, "O"))
+  end
 end

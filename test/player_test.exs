@@ -40,4 +40,56 @@ defmodule PlayerTest do
                      "", "", ""]
     assert Player.get_score(current_board, "O") == -1
   end
+
+  test "#score_move returns a list with the score and the move if the move causes the game to be over" do
+    current_board = ["X", "X", "",
+                     "", "", "",
+                     "", "", ""]
+    assert Player.score_move(current_board, "X", 2) == [1, 2]
+  end
+
+  test "#switch_player_mark: returns `X` if `O` is the current player's mark" do
+    assert Player.switch_player_mark("X") == "O"
+  end
+
+  test "#switch_player_mark: returns `O` if `X` is the current player's mark" do
+    assert Player.switch_player_mark("O") == "X"
+  end
+
+  test "#get_best_move: it takes the winning move for the computer" do
+    current_board = ["X", "O", "",
+                     "O", "O", "",
+                     "X", "X", "O"]
+    assert Player.get_best_move(current_board, "O") == 5
+  end
+
+
+  test "#get_best_move: it takes the tying move instead of losing" do
+    current_board = ["X", "X", "",
+                     "O", "X", "",
+                     "X", "O", "O"]
+    assert Player.get_best_move(current_board, "O") == 2
+  end
+
+  test "#get_best_move: it takes the winning move instead of tying" do
+    current_board = ["X", "X", "",
+                     "O", "O", "",
+                     "X", "O", "O"]
+    assert Player.get_best_move(current_board, "O") == 5
+  end
+
+  test "#get_best_move: it blocks the opponent" do
+    current_board = ["X", "", "",
+                     "", "X", "",
+                     "", "O", ""]
+    assert Player.get_best_move(current_board, "O") == 8
+  end
+
+  test "#get_best_move: " do
+    current_board = ["X", "", "",
+                     "O", "O", "",
+                     "X", "", ""]
+    assert Player.get_best_move(current_board, "O") == 5
+  end
 end
+
