@@ -1,5 +1,6 @@
 defmodule Setup do
-  import String
+  import String, only: [rstrip: 1]
+  import Enum, only: [reverse: 1]
   @io  CommandLineIO
 
   def welcome do
@@ -28,7 +29,7 @@ defmodule Setup do
 
   def set_first_player(first_or_second, players) do
     if first_or_second == "second" do
-       Enum.reverse(players)
+      reverse(players)
     else
       players
     end
@@ -38,8 +39,7 @@ defmodule Setup do
     welcome
     first_or_second? = get_first_or_second #this will return either 'first' or 'second'
     opponent = get_opponent #this will return either 'smart' or 'dumb'
-    players = create_players(opponent) #this will return a list with both players
-    set_first_player(players, first_or_second?) #this reverses the list if the user wants to go second
+    players = set_first_player(first_or_second?, create_players(opponent)) #this reverses the list if the user wants to go second
     Game.game_loop(Board.generate_blank_board, players)
   end
 
