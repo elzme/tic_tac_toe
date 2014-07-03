@@ -38,4 +38,19 @@ defmodule GameTest do
                      "O", "X", "O"]
     assert Game.create_game_over_message(current_board) == "Game over! It's a tie!"
   end
+
+  test "#play_again?: ends the program if the users doesn't want to play another game" do
+    assert capture_io("no", fn ->
+      input = Game.play_again?
+      IO.write input
+    end) == "Would you like to play again?\nBye!"
+  end
+
+  #NOT SURE HOW TO TEST THIS
+  #  test "#play_again?: starts a new game if the user wants to play again" do
+  #    assert capture_io("yes", fn ->
+  #      input = Game.play_again?
+  #      IO.write input
+  #      end) == "Would you like to play again?\n!"
+  #  end
 end

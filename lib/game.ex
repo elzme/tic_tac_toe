@@ -1,4 +1,5 @@
 defmodule Game do
+  import String, only: [rstrip: 1]
 
   def new_game do #NOT TESTED
     first_or_second? = Setup.setup_game
@@ -13,7 +14,7 @@ defmodule Game do
     if Rules.game_over?(updated_board) do
       #game over stuff:
       CommandLineIO.write("\nCurrent Board:\n#{Board.display(updated_board)}\n#{create_game_over_message(updated_board)}")
-      #play_again?
+      play_again?
     else
       game_loop(updated_board, next_player)
     end
@@ -46,6 +47,17 @@ defmodule Game do
         "Game over! It's a tie!"
     end
   end
+
+  def play_again? do
+    if rstrip(CommandLineIO.gets("Would you like to play again?\n")) == "yes" do
+      new_game
+    else
+      CommandLineIO.write("Bye!")
+      nil
+    end
+
+  end
+
   #def play_again?
   #response = CommandLineIO.gets("Would you like to play again?")
   #if response == "yes"
