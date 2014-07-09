@@ -11,11 +11,11 @@ defmodule Board do
   end
 
   def display_sample_board do
-    " 0 | 1 | 2 \n" <>
+    " 1 | 2 | 3 \n" <>
     " ___________ \n" <>
-    " 3 | 4 | 5 \n" <>
+    " 4 | 5 | 6 \n" <>
     " ___________ \n" <>
-    " 6 | 7 | 8 "
+    " 7 | 8 | 9 "
   end
 
   def display(current_board) do

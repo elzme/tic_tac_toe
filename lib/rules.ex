@@ -13,10 +13,9 @@ defmodule Rules do
     if is_integer(move) do
       move
     else
-      move = convert_potential_move_to_int(move)
+      move = convert_potential_move_to_int(move) - 1
     end
-    (move in ["0", 0, "1", 1, "2", 2, "3", 3, "4", 4, "5", 5, "6", 6, "7", 7, "8", 8]) &&
-    (Board.open_position?(current_board, move))
+    (move in [0, 1, 2, 3, 4, 5, 6, 7, 8]) && (Board.open_position?(current_board, move))
   end
 
   def winner_in_line?(current_board, line) do

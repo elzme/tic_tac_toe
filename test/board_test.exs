@@ -8,11 +8,11 @@ defmodule BoardTest do
   end
 
   test "#display_sample_board: returns a sample board for the beginning of the game" do
-    assert Board.display_sample_board == " 0 | 1 | 2 \n" <>
+    assert Board.display_sample_board == " 1 | 2 | 3 \n" <>
                                        " ___________ \n" <>
-                                        " 3 | 4 | 5 \n" <>
+                                        " 4 | 5 | 6 \n" <>
                                        " ___________ \n" <>
-                                         " 6 | 7 | 8 "
+                                         " 7 | 8 | 9 "
   end
 
   test "#display: returns the current board for display" do

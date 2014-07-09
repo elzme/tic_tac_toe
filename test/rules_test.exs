@@ -26,7 +26,7 @@ defmodule RulesTest do
     current_board = ["X", "X", "O",
                      "X", "", "X",
                      "O", "O", "X"]
-    assert Rules.valid_move?(current_board, "4") == true
+    assert Rules.valid_move?(current_board, "5") == true
   end
 
   test "#valid_move?: returns false if the move is not between 0 and 8" do

@@ -30,7 +30,7 @@ defmodule Player do
   defp get_human_player_move(player, current_board) do
     position = rstrip(CommandLineIO.gets "Please enter your move (1 - 9):\n")
     if Rules.valid_move?(current_board, position) do
-      to_integer(position)
+      to_integer(position) - 1
     else
       get_human_player_move(player, current_board)
     end

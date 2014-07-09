@@ -4,12 +4,12 @@ defmodule SetupTest do
 
   test "#welcome: prints a welcome message and a sample board" do
     assert capture_io(fn -> Setup.welcome end) == "Welcome to Elixir Tic Tac Toe!\n" <>
-                                                        "Here's what the board looks like:\n" <>
-                                                              " 0 | 1 | 2 \n" <>
+                                                   "Here's what the board looks like:\n" <>
+                                                              " 1 | 2 | 3 \n" <>
                                                               " ___________ \n" <>
-                                                              " 3 | 4 | 5 \n" <>
+                                                              " 4 | 5 | 6 \n" <>
                                                               " ___________ \n" <>
-                                                              " 6 | 7 | 8 \n"
+                                                              " 7 | 8 | 9 \n"
   end
 
   test "#get_first_or_second: gets if the user would like to go first or second" do

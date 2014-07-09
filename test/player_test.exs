@@ -9,7 +9,7 @@ defmodule PlayerTest do
     assert capture_io("1", fn ->
       input = Player.get_move(%Player{}, current_board)
       IO.write input
-    end) == "Please enter your move (1 - 9):\n1"
+    end) == "Please enter your move (1 - 9):\n0"
   end
 
   test "#get_move: gets the smart computer's move when it is the current player" do
