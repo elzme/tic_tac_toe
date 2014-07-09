@@ -44,7 +44,6 @@ defmodule NegamaxTest do
     assert Negamax.get_best_move(current_board, "O") == 5
   end
 
-
   test "#get_best_move: it takes the tying move instead of losing" do
     current_board = ["X", "X", "",
                      "O", "X", "",

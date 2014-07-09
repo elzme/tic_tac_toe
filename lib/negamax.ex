@@ -14,14 +14,6 @@ defmodule Negamax do
     end
   end
 
-  def switch_player_mark(current_player_mark) do
-    if current_player_mark == "X" do
-      "O"
-    else
-      "X"
-    end
-  end
-
   def score_move(current_board, player_mark, move, depth) do
     updated_board = Board.update(current_board, move, player_mark)
     updated_depth = depth + 1
@@ -34,13 +26,21 @@ defmodule Negamax do
     end
   end
 
-  def negamax(current_board, player_mark, depth) do
-    moves = Board.get_blank_spaces(current_board)
-    map(moves, fn(x) -> score_move(current_board, player_mark, x, depth) end)
-    |>max()
+  def switch_player_mark(current_player_mark) do
+    if current_player_mark == "X" do
+      "O"
+    else
+      "X"
+    end
   end
 
   def get_best_move(current_board, computer_mark) do
     last(negamax(current_board, "O", 0))
+  end
+
+  defp negamax(current_board, player_mark, depth) do
+    moves = Board.get_blank_spaces(current_board)
+    map(moves, fn(x) -> score_move(current_board, player_mark, x, depth) end)
+    |>max()
   end
 end
