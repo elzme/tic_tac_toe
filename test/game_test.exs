@@ -2,6 +2,18 @@ defmodule GameTest do
   use ExUnit.Case
   import ExUnit.CaptureIO
 
+  test "#the_computer_is_playing: tells the user that the computer is playing (if its the dumb computer's turn)" do
+    assert capture_io(fn -> Game.the_computer_is_playing(%Player{type: :dumb_computer, mark: "O"}) end) == "\nThe computer is playing...\n"
+  end
+
+  test "#the_computer_is_playing: tells the user that the computer is playing (if its the smart computer's turn)" do
+    assert capture_io(fn -> Game.the_computer_is_playing(%Player{type: :smart_computer, mark: "O"}) end) == "\nThe computer is playing...\n"
+  end
+
+  test "#the_computer_is_playing: doesn't do anything if its the human's turn" do
+    assert capture_io(fn -> Game.the_computer_is_playing(%Player{type: :human, mark: "O"}) end) == ""
+  end
+
   test "#switch_player: returns the computer player, if the current player is the human player" do
     assert Game.switch_player(%Player{}) == %Player{type: :computer, mark: "O"}
   end

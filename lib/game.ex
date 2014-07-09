@@ -8,15 +8,22 @@ defmodule Game do
   end
 
   def game_loop(current_board, players) do
-    CommandLineIO.write("\nCurrent Board:\n#{Board.display(current_board)}")
     current_player = first(players)
+    the_computer_is_playing(current_player)
     position = Player.get_move(current_player, current_board)
     updated_board = Board.update(current_board, position, current_player.mark)
+    CommandLineIO.write("\nCurrent Board:\n#{Board.display(updated_board)}")
     if Rules.game_over?(updated_board) do
       CommandLineIO.write("\nCurrent Board:\n#{Board.display(updated_board)}\n#{create_game_over_message(updated_board)}")
       play_again?
     else
       game_loop(updated_board, reverse(players))
+    end
+  end
+
+  def the_computer_is_playing(current_player) do
+    if current_player.type == :dumb_computer || current_player.type == :smart_computer do
+      CommandLineIO.write("\nThe computer is playing...\n")
     end
   end
 
