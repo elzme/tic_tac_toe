@@ -32,3 +32,8 @@ Then, from your terminal navigate into the tic_tac_toe directory and type:
 iex -S mix
 TicTacToe.play
 ```
+
+To run the tests in the terminal, just type:
+```
+mix test
+```
