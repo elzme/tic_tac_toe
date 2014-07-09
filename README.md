@@ -1,5 +1,5 @@
-Ttt
-===
+Tic Tac Toe
+===========
 To play this version of Tic Tac Toe, you must have both Erlang and
 Elixir installed on your computer.
 
@@ -27,7 +27,7 @@ Simply clone this repo:
 git clone https://github.com/elzme/ttt.git
 ```
 
-Then, from your terminal navigate into the ttt directory and type:
+Then, from your terminal navigate into the tic_tac_toe directory and type:
 ```
 iex -S mix
 TicTacToe.play
