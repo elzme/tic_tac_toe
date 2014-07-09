@@ -22,14 +22,14 @@ defmodule RulesTest do
     assert Rules.game_over?(current_board) == false
   end
 
-  test "#valid_move?: returns true if the move is between 0 and 8 and if the space is empty on the board" do
+  test "#valid_move?: returns true if the move is between 1 and 9 (as a string) and if the space is empty on the board" do
     current_board = ["X", "X", "O",
-                     "X", "", "X",
-                     "O", "O", "X"]
-    assert Rules.valid_move?(current_board, "5") == true
+                     "X", "X", "X",
+                     "O", "O", ""]
+    assert Rules.valid_move?(current_board, "9") == true
   end
 
-  test "#valid_move?: returns false if the move is not between 0 and 8" do
+  test "#valid_move?: returns false if the move is not between 1 and 9 (as a string)" do
     current_board = ["X", "X", "O",
                      "X", "", "X",
                      "O", "O", "X"]
@@ -40,14 +40,14 @@ defmodule RulesTest do
     current_board = ["X", "X", "O",
                      "X", "", "X",
                      "O", "O", "X"]
-    assert Rules.valid_move?(current_board, "0") == false
+    assert Rules.valid_move?(current_board, "9") == false
   end
 
   test "#valid_move?: returns false if the move is not between 0 and 8 (with an integer)" do
     current_board = ["X", "X", "O",
                      "X", "", "X",
                      "O", "O", "X"]
-    assert Rules.valid_move?(current_board, "10") == false
+    assert Rules.valid_move?(current_board, 10) == false
   end
 
   test "#valid_move?: returns false if the move is not blank (with an integer)" do
