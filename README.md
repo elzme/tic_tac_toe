@@ -24,7 +24,7 @@ to install Ellixir.
 Once you have Elixir on your computer, you're almost ready to play!
 Simply clone this repo:
 ```
-git clone https://github.com/elzme/ttt.git
+git clone https://github.com/elzme/tic_tac_toe.git
 ```
 
 Then, from your terminal navigate into the tic_tac_toe directory and type:
