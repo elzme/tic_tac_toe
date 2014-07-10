@@ -16,7 +16,7 @@ Then install Elixir:
 ```
 brew install elixir
 ```
-*If you do no use homebrew, or are using a Windows machinge, please
+*If you do not use homebrew, or are using a Windows machine, please
 consult the [Elixir
 website](http://elixir-lang.org/getting_started/1.html) for other ways
 to install Ellixir.
