@@ -1,4 +1,4 @@
-Tic Tac Toe
+Elixir Tic Tac Toe
 ===========
 To play this version of Tic Tac Toe, you must have both Erlang and
 Elixir installed on your computer.
