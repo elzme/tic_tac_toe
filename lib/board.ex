@@ -32,7 +32,7 @@ defmodule Board do
   end
 
   def open_position?(current_board, position) do
-    at(current_board, position) == ""
+    at(current_board, position) == @blank_space
   end
 
   def blank_spaces_left?(current_board) do
@@ -42,7 +42,6 @@ defmodule Board do
 
   def get_blank_spaces(current_board) do
     with_index(current_board)
-    |> filter_map(fn {x, _} -> x == "" end, fn {_, i} -> i end)
+    |> filter_map(fn {x, _} -> x == @blank_space end, fn {_, i} -> i end)
   end
-
 end

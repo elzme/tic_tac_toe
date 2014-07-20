@@ -1,8 +1,9 @@
 defmodule Rules do
+
   import Enum, only: [all?: 2, fetch!: 2, filter: 2, map: 2]
   import List, only: [flatten: 1, first: 1]
   import String, only: [to_integer: 1]
-
+  @blank_space ""
   @winning_lines [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
 
   def game_over?(current_board) do
@@ -21,7 +22,7 @@ defmodule Rules do
   def winner_in_line?(current_board, line) do
     current_line = get_current_line_values(current_board, line)
     are_all_marks_the_same? = all_marks_the_same?(current_line)
-    if (fetch!(current_board, first(line))  == "") || (!are_all_marks_the_same?) do
+    if (fetch!(current_board, first(line))  == @blank_space) || (!are_all_marks_the_same?) do
       false
     else
       line
