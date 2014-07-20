@@ -16,7 +16,7 @@ defmodule PlayerTest do
     current_board = ["X", "O", "X",
                      "X", "O", "X",
                      "O", "X", ""]
-    assert Player.get_move(%Player{type: :smart_computer, mark: "O"}, current_board) == 8
+    assert Player.get_move(%Player{type: :smart, mark: "O"}, current_board) == 8
   end
 
 
@@ -24,7 +24,7 @@ defmodule PlayerTest do
     current_board = ["", "", "",
                      "", "", "",
                      "", "", ""]
-    computer_move = Player.get_move(%Player{type: :dumb_computer, mark: "O"}, current_board)
+    computer_move = Player.get_move(%Player{type: :dumb, mark: "O"}, current_board)
     assert is_integer(computer_move) == true
   end
 end

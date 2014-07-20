@@ -1,16 +1,24 @@
 defmodule Player do
-  import String, only: [rstrip: 1, to_integer: 1]
+  import String, only: [rstrip: 1, to_integer: 1, to_atom: 1]
 
   defstruct type: :human, mark: "X"
+
+  def create_human_player do
+    %Player{}
+  end
+
+  def create_computer_player(player_type) do
+    %Player{type: to_atom(player_type), mark: "O"}
+  end
 
   def get_move(player, current_board) do
     cond do
       player.type == :human ->
         get_human_player_move(player, current_board)
-      player.type == :smart_computer ->
+      player.type == :smart ->
         get_unbeatable_computer_player_move(current_board, player.mark)
-      player.type == :dumb_computer ->
-         get_easy_computer_player_move(current_board)
+      player.type == :dumb ->
+        get_easy_computer_player_move(current_board)
     end
   end
 
