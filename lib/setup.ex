@@ -37,17 +37,24 @@ defmodule Setup do
 
   def setup_new_game do
     welcome
-    first_or_second? = get_first_or_second #this will return either 'first' or 'second'
-    opponent = get_opponent #this will return either 'smart' or 'dumb'
-    players = set_first_player(first_or_second?, create_players(opponent)) #this reverses the list if the user wants to go second
-    Game.game_loop(Board.generate_blank_board, players)
+    first_or_second? = who_goes_first?
+    opponent = opponent?
+    set_first_player(first_or_second?, create_players(opponent))
+  end
+
+  def who_goes_first? do
+    @io.get_first_or_second
+  end
+
+  def opponent? do
+    @io.get_opponent
   end
 
   defp print_welcome_message do
-    @io.write("Welcome to Elixir Tic Tac Toe!\n")
+    @io.welcome_message
   end
 
   defp print_display_board do
-    @io.write("Here's what the board looks like:\n#{Board.display_sample_board}\n")
+    @io.display_board
   end
 end
