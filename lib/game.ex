@@ -48,7 +48,7 @@ defmodule Game do
   end
 
   def play_again? do
-    if rstrip(CommandLineIO.gets("Would you like to play again?\n")) == "yes" do
+    if rstrip(CommandLineIO.gets("Would you like to play again? Please enter 'yes' or 'no'.\n")) == "yes" do
       new_game
     else
       CommandLineIO.write("Bye!\n")

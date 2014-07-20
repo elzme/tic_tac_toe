@@ -47,6 +47,6 @@ defmodule GameTest do
     assert capture_io("no", fn ->
       input = Game.play_again?
       IO.write input
-    end) == "Would you like to play again?\nBye!\nok"
+    end) == "Would you like to play again? Please enter 'yes' or 'no'.\nBye!\nok"
   end
 end
