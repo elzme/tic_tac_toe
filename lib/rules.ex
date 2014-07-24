@@ -5,9 +5,10 @@ defmodule Rules do
   import String, only: [to_integer: 1]
   @blank_space ""
   @winning_lines [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+  @board TicTacToeBoard
 
   def game_over?(current_board) do
-    !(Board.blank_spaces_left?(current_board)) || Rules.winner_on_board?(current_board)
+    !(@board.blank_spaces_left?(current_board)) || Rules.winner_on_board?(current_board)
   end
 
   def valid_move?(current_board, move) do
@@ -16,7 +17,7 @@ defmodule Rules do
     else
       move = convert_potential_move_to_int(move) - 1
     end
-    (move in [0, 1, 2, 3, 4, 5, 6, 7, 8]) && (Board.open_position?(current_board, move))
+    (move in [0, 1, 2, 3, 4, 5, 6, 7, 8]) && (@board.open_position?(current_board, move))
   end
 
   def winner_in_line?(current_board, line) do

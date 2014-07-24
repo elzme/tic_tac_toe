@@ -2,6 +2,8 @@ defmodule Negamax do
   import Enum, only: [map: 2, max: 1]
   import List, only: [first: 1, last: 1]
 
+  @board TicTacToeBoard
+
   def get_score(current_board, player_mark) do
     winner = Rules.who_wins?(current_board)
     cond do
@@ -15,7 +17,7 @@ defmodule Negamax do
   end
 
   def score_move(current_board, player_mark, move, depth) do
-    updated_board = Board.update(current_board, move, player_mark)
+    updated_board = @board.update(current_board, move, player_mark)
     updated_depth = depth + 1
     if Rules.game_over?(updated_board) do
       score_divided_by_depth = div(get_score(updated_board, player_mark), updated_depth)
@@ -39,7 +41,7 @@ defmodule Negamax do
   end
 
   defp negamax(current_board, player_mark, depth) do
-    moves = Board.get_blank_spaces(current_board)
+    moves = @board.get_blank_spaces(current_board)
     map(moves, fn(x) -> score_move(current_board, player_mark, x, depth) end)
     |>max()
   end

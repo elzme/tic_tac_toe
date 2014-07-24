@@ -1,4 +1,4 @@
-defmodule Board do
+defmodule TicTacToeBoard do
 
   import List, only: [replace_at: 3, to_tuple: 1]
   import Enum, only: [any?: 2, at: 2, filter_map: 3, with_index: 1]

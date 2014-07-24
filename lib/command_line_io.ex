@@ -14,7 +14,7 @@ defmodule CommandLineIO do
   end
 
   def display_board do
-    write("Here's what the board looks like:\n#{Board.display_sample_board}\n")
+    write("Here's what the board looks like:\n#{TicTacToeBoard.display_sample_board}\n")
   end
 
   def get_first_or_second do
