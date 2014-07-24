@@ -14,14 +14,6 @@ defmodule GameTest do
     assert capture_io(fn -> Game.the_computer_is_playing(%Player{type: :human, mark: "O"}) end) == ""
   end
 
-  test "#switch_player: returns the computer player, if the current player is the human player" do
-    assert Game.switch_player(%Player{}) == %Player{type: :computer, mark: "O"}
-  end
-
-  test "#switch_player: returns the human player, if the current player is the computer" do
-    assert Game.switch_player(%Player{}) == %Player{type: :computer, mark: "O"}
-  end
-
   test "#create_game_over_message: tells the user that the computer won" do
     current_board = ["O", "O", "X",
                      "X", "O", "X",

@@ -28,4 +28,16 @@ defmodule CommandLineIO do
     end
     opponent
   end
+
+  def ask_if_user_wants_to_play_again do
+    rstrip(gets("Would you like to play again? Please enter 'yes' or 'no'.\n"))
+  end
+
+  def say_goodbye do
+    write("Bye!\n")
+  end
+
+  def display_current_board(updated_board) do
+    write("\nCurrent Board:\n#{updated_board.display(updated_board)}")
+  end
 end

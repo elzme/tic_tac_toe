@@ -2,19 +2,25 @@ defmodule Game do
   import String, only: [rstrip: 1]
   import List, only: [first: 1]
   import Enum, only: [reverse: 1]
+  @io CommandLineIO
+  @rules Rules
+  @board Board
+  @setup Setup
 
   def new_game do
-    Setup.setup_new_game
+    new_board = @board.generate_blank_board
+    players = @setup.setup_new_game
+    game_loop(new_board, players)
   end
 
   def game_loop(current_board, players) do
     current_player = first(players)
     the_computer_is_playing(current_player)
-    position = Player.get_move(current_player, current_board)
-    updated_board = Board.update(current_board, position, current_player.mark)
-    CommandLineIO.write("\nCurrent Board:\n#{Board.display(updated_board)}")
-    if Rules.game_over?(updated_board) do
-      CommandLineIO.write("\nCurrent Board:\n#{Board.display(updated_board)}\n#{create_game_over_message(updated_board)}")
+    position = current_player.get_move(current_player, current_board)
+    updated_board = @board.update(current_board, position, current_player.mark)
+    @io.display_current_board
+    if @rules.game_over?(updated_board) do
+      @io.write("\nCurrent Board:\n#{@board.display(updated_board)}\n#{create_game_over_message(updated_board)}")
       play_again?
     else
       game_loop(updated_board, reverse(players))
@@ -23,20 +29,12 @@ defmodule Game do
 
   def the_computer_is_playing(current_player) do
     if current_player.type == :dumb_computer || current_player.type == :smart_computer do
-      CommandLineIO.write("\nThe computer is playing...\n")
-    end
-  end
-
-  def switch_player(current_player) do
-    if current_player == %Player{} do
-      %Player{type: :computer, mark: "O"}
-    else
-      %Player{}
+      @io.write("\nThe computer is playing...\n")
     end
   end
 
   def create_game_over_message(current_board) do
-    result = Rules.who_wins?(current_board)
+    result = @rules.who_wins?(current_board)
     cond do
       result == "O" ->
         "Game over! The computer won!\n"
@@ -48,10 +46,10 @@ defmodule Game do
   end
 
   def play_again? do
-    if rstrip(CommandLineIO.gets("Would you like to play again? Please enter 'yes' or 'no'.\n")) == "yes" do
+    if @io.ask_if_user_wants_to_play_again == "yes" do
       new_game
     else
-      CommandLineIO.write("Bye!\n")
+      @io.say_goodbye
     end
   end
 end
