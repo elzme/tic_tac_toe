@@ -1,5 +1,6 @@
 defmodule CommandLineIO do
   import String, only: [rstrip: 1]
+  @rules Rules
 
   def write(msg) do
     IO.write(msg)
@@ -39,5 +40,21 @@ defmodule CommandLineIO do
 
   def display_current_board(updated_board) do
     write("\nCurrent Board:\n#{updated_board.display(updated_board)}")
+  end
+
+  def display_game_over_message(board, updated_board_state) do
+    write("\nCurrent Board:\n#{board.display(updated_board_state)}\n#{create_game_over_message(updated_board_state)}")
+  end
+
+  def create_game_over_message(current_board) do
+    result = @rules.who_wins?(current_board)
+    cond do
+      result == "O" ->
+        "Game over! The computer won!\n"
+      result == "X" ->
+        "Game over! You won!\n"
+      result == "tie" ->
+        "Game over! It's a tie!\n"
+    end
   end
 end

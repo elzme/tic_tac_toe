@@ -16,27 +16,6 @@ defmodule GameTest do
     assert capture_io(fn -> @game.the_computer_is_playing(%Player{type: :human, mark: "O"}) end) == ""
   end
 
-  test "#create_game_over_message: tells the user that the computer won" do
-    current_board = ["O", "O", "X",
-                     "X", "O", "X",
-                     "O", "X", "O"]
-    assert @game.create_game_over_message(current_board) == "Game over! The computer won!\n"
-  end
-
-  test "#create_game_over_message: tells the user that they won" do
-    current_board = ["X", "X", "X",
-                     "X", "O", "X",
-                     "O", "X", "O"]
-    assert @game.create_game_over_message(current_board) == "Game over! You won!\n"
-  end
-
-  test "#create_game_over_message: tells the user its a tie" do
-    current_board = ["X", "O", "X",
-                     "X", "O", "X",
-                     "O", "X", "O"]
-    assert @game.create_game_over_message(current_board) == "Game over! It's a tie!\n"
-  end
-
   test "#play_again?: ends the program if the users doesn't want to play another game" do
     assert capture_io("no", fn ->
       input = @game.play_again?(@board)

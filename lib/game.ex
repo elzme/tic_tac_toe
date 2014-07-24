@@ -19,7 +19,7 @@ defmodule Game do
     updated_board = board.update(current_board, position, current_player.mark)
     @io.display_current_board
     if @rules.game_over?(updated_board) do
-      @io.write("\nCurrent Board:\n#{board.display(updated_board)}\n#{create_game_over_message(updated_board)}")
+      @io.display_game_over_message(board, updated_board)
       play_again?(board)
     else
       game_loop(updated_board, reverse(players), board)
@@ -29,18 +29,6 @@ defmodule Game do
   def the_computer_is_playing(current_player) do
     if current_player.type == :dumb_computer || current_player.type == :smart_computer do
       @io.write("\nThe computer is playing...\n")
-    end
-  end
-
-  def create_game_over_message(current_board) do
-    result = @rules.who_wins?(current_board)
-    cond do
-      result == "O" ->
-        "Game over! The computer won!\n"
-      result == "X" ->
-        "Game over! You won!\n"
-      result == "tie" ->
-        "Game over! It's a tie!\n"
     end
   end
 
