@@ -1,4 +1,4 @@
-defmodule Setup do #TODO: this should be generic enough to use with any game setup
+defmodule Setup do 
   import Enum, only: [reverse: 1]
   @io  CommandLineIO
   @player Player

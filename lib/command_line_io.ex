@@ -57,4 +57,8 @@ defmodule CommandLineIO do
         "Game over! It's a tie!\n"
     end
   end
+
+  def computer_playing_message do
+    @io.write("\nThe computer is playing...\n")
+  end
 end
