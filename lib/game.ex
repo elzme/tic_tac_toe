@@ -28,7 +28,7 @@ defmodule Game do
 
   def the_computer_is_playing(current_player) do
     if current_player.type == :dumb_computer || current_player.type == :smart_computer do
-      @io.write("\nThe computer is playing...\n")
+      @io.computer_playing_message
     end
   end
 
