@@ -1,6 +1,6 @@
 defmodule TicTacToe do
   def main() do
-    Game.new_game
+    Game.new_game(TicTacToeBoard, Player)
   end
 
   def play do

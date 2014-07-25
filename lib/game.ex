@@ -6,23 +6,23 @@ defmodule Game do
   @rules Rules
   @setup Setup
 
-  def new_game(board) do
-    new_board_state = board.generate_blank_board
+  def new_game(board, player) do
+    current_board = board.generate_blank_board
     players = @setup.setup_new_game
-    game_loop(new_board_state, players, board)
+    game_loop(board, current_board, player, players)
   end
 
-  def game_loop(current_board, players, board) do
+  def game_loop(board, current_board, player, players) do
     current_player = first(players)
     the_computer_is_playing(current_player)
-    position = current_player.get_move(current_player, current_board)
+    position = player.get_move(current_player, current_board)
     updated_board = board.update(current_board, position, current_player.mark)
-    @io.display_current_board
+    @io.display_current_board(board, updated_board)
     if @rules.game_over?(updated_board) do
       @io.display_game_over_message(board, updated_board)
-      play_again?(board)
+      play_again?(board, player)
     else
-      game_loop(updated_board, reverse(players), board)
+      game_loop(board, updated_board, player, reverse(players))
     end
   end
 
@@ -32,9 +32,9 @@ defmodule Game do
     end
   end
 
-  def play_again?(board) do
+  def play_again?(board, player) do
     if @io.ask_if_user_wants_to_play_again == "yes" do
-      new_game(board)
+      new_game(board, player)
     else
       @io.say_goodbye
     end

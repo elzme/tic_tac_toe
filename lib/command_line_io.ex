@@ -25,7 +25,7 @@ defmodule CommandLineIO do
   def get_opponent do
     opponent = rstrip(gets("Would you like to play against the smart computer, or the dumb computer? Please enter 'smart' or 'dumb'.\n "))
     unless opponent == "smart" || opponent == "dumb" do
-       get_opponent
+      get_opponent
     end
     opponent
   end
@@ -38,8 +38,8 @@ defmodule CommandLineIO do
     write("Bye!\n")
   end
 
-  def display_current_board(updated_board) do
-    write("\nCurrent Board:\n#{updated_board.display(updated_board)}")
+  def display_current_board(board, updated_board) do
+    write("\nCurrent Board:\n#{board.display(updated_board)}")
   end
 
   def display_game_over_message(board, updated_board_state) do

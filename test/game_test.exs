@@ -3,6 +3,7 @@ defmodule GameTest do
   import ExUnit.CaptureIO
   @game Game
   @board TicTacToeBoard
+  @player Player
 
   test "#the_computer_is_playing: tells the user that the computer is playing (if its the dumb computer's turn)" do
     assert capture_io(fn -> @game.the_computer_is_playing(%Player{type: :dumb_computer, mark: "O"}) end) == "\nThe computer is playing...\n"
@@ -18,7 +19,7 @@ defmodule GameTest do
 
   test "#play_again?: ends the program if the users doesn't want to play another game" do
     assert capture_io("no", fn ->
-      input = @game.play_again?(@board)
+      input = @game.play_again?(@board, @player)
       IO.write input
     end) == "Would you like to play again? Please enter 'yes' or 'no'.\nBye!\nok"
   end
