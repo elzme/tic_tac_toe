@@ -59,6 +59,6 @@ defmodule CommandLineIO do
   end
 
   def computer_playing_message do
-    @io.write("\nThe computer is playing...\n")
+    write("\nThe computer is playing...\n")
   end
 end
