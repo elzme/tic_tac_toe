@@ -1,4 +1,4 @@
-defmodule Setup do 
+defmodule Setup do
   import Enum, only: [reverse: 1]
   @io  CommandLineIO
   @player Player
