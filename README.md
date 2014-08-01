@@ -27,10 +27,14 @@ Simply clone this repo:
 git clone https://github.com/elzme/tic_tac_toe.git
 ```
 
-Then, from your terminal navigate into the tic_tac_toe directory and type:
+Then, from your terminal navigate into the tic_tac_toe directory and type (you'll only have to do this the first time you play):
 ```
-iex -S mix
-TicTacToe.play
+escript tic_tac_toe
+```
+
+Then to start the game:
+```
+./tic_tac_toe
 ```
 
 To run the tests in the terminal, just type:
