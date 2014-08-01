@@ -1,30 +1,15 @@
 defmodule Setup do
-  import String, only: [rstrip: 1]
   import Enum, only: [reverse: 1]
   @io  CommandLineIO
+  @player Player
 
   def welcome do
     print_welcome_message
     print_display_board
   end
 
-  def get_first_or_second do
-    rstrip(@io.gets("Would you like to go first or second? Please enter 'first' or 'second'.\n "))
-  end
-
-  def get_opponent do
-    rstrip(@io.gets("Would you like to play against the smart computer, or the dumb computer? Please enter 'smart' or 'dumb'.\n "))
-  end
-
-  def create_players(opponent) do
-    cond do
-      opponent == "smart" ->
-        [%Player{}, %Player{type: :smart_computer, mark: "O"}]
-      opponent == "dumb" ->
-        [%Player{}, %Player{type: :dumb_computer, mark: "O"}]
-      true ->
-        [%Player{}, %Player{type: :smart_computer, mark: "O"}]
-    end
+  def create_players(type_of_opponent) do
+    [@player.create_human_player, @player.create_computer_player(type_of_opponent)]
   end
 
   def set_first_player(first_or_second, players) do
@@ -37,17 +22,24 @@ defmodule Setup do
 
   def setup_new_game do
     welcome
-    first_or_second? = get_first_or_second #this will return either 'first' or 'second'
-    opponent = get_opponent #this will return either 'smart' or 'dumb'
-    players = set_first_player(first_or_second?, create_players(opponent)) #this reverses the list if the user wants to go second
-    Game.game_loop(Board.generate_blank_board, players)
+    first_or_second? = who_goes_first?
+    opponent = opponent?
+    set_first_player(first_or_second?, create_players(opponent))
+  end
+
+  def who_goes_first? do
+    @io.get_first_or_second
+  end
+
+  def opponent? do
+    @io.get_opponent
   end
 
   defp print_welcome_message do
-    @io.write("Welcome to Elixir Tic Tac Toe!\n")
+    @io.welcome_message
   end
 
   defp print_display_board do
-    @io.write("Here's what the board looks like:\n#{Board.display_sample_board}\n")
+    @io.display_board
   end
 end
