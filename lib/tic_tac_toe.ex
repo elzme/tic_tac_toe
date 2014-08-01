@@ -1,10 +1,10 @@
 defmodule TicTacToe do
-  def main() do
+  def main(args \\ []) do
     Game.new_game(TicTacToeBoard, Player)
   end
 
   def play do
-    main
+    main()
   end
 end
 
