@@ -4,7 +4,7 @@ defmodule TicTacToe do
   end
 
   def play do
-    main()
+    main
   end
 end
 

@@ -20,7 +20,6 @@ defmodule TicTacToeBoard do
     any?(current_board, fn(x) -> x == @blank_space end)
   end
 
-
   def get_blank_spaces(current_board) do
     with_index(current_board)
     |> filter_map(fn {x, _} -> x == @blank_space end, fn {_, i} -> i end)

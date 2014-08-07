@@ -25,10 +25,11 @@ defmodule CommandLineIO do
 
   def get_opponent do
     opponent = rstrip(gets("Would you like to play against the smart computer, or the dumb computer? Please enter 'smart' or 'dumb'.\n "))
-    unless opponent == "smart" || opponent == "dumb" do
-      opponent = get_opponent
+    if opponent == "smart" || opponent == "dumb" do
+      opponent
+    else
+      opponent
     end
-    opponent
   end
 
   def ask_if_user_wants_to_play_again do
