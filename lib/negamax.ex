@@ -1,15 +1,15 @@
 defmodule Negamax do
   import Enum, only: [map: 2, max: 1]
   import List, only: [first: 1, last: 1]
-
+  @rules Rules
   @board TicTacToeBoard
 
   def get_score(current_board, player_mark) do
-    winner = Rules.who_wins?(current_board)
+    winner = @rules.who_wins?(current_board)
     cond do
       winner == player_mark ->
         100
-      (winner != player_mark && Rules.winner_on_board?(current_board)) ->
+      (winner != player_mark && @rules.winner_on_board?(current_board)) ->
        -100
       true ->
         0
@@ -19,7 +19,7 @@ defmodule Negamax do
   def score_move(current_board, player_mark, move, depth) do
     updated_board = @board.update(current_board, move, player_mark)
     updated_depth = depth + 1
-    if Rules.game_over?(updated_board) do
+    if @rules.game_over?(updated_board) do
       score_divided_by_depth = div(get_score(updated_board, player_mark), updated_depth)
       [score_divided_by_depth, move]
     else
