@@ -1,10 +1,11 @@
-defmodule Ttt.Mixfile do
+defmodule TicTacToe.Mixfile do
   use Mix.Project
 
   def project do
     [app: :tic_tac_toe,
      version: "0.0.1",
      elixir: "~> 0.14.2",
+     escript: escript,
      deps: deps]
   end
 
@@ -15,6 +16,9 @@ defmodule Ttt.Mixfile do
     [applications: []]
   end
 
+  def escript do
+    [main_module: TicTacToe]
+  end
   # Dependencies can be hex.pm packages:
   #
   #   {:mydep, "~> 0.3.0"}

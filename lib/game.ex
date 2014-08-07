@@ -17,9 +17,9 @@ defmodule Game do
     the_computer_is_playing(current_player)
     position = player.get_move(current_player, current_board)
     updated_board = board.update(current_board, position, current_player.mark)
-    @io.display_current_board(board, updated_board)
+    @io.display_current_board(updated_board)
     if @rules.game_over?(updated_board) do
-      @io.display_game_over_message(board, updated_board)
+      @io.display_game_over_message(updated_board)
       play_again?(board, player)
     else
       game_loop(board, updated_board, player, reverse(players))

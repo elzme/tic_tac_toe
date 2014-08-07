@@ -1,5 +1,4 @@
 defmodule Rules do
-
   import Enum, only: [all?: 2, fetch!: 2, filter: 2, map: 2]
   import List, only: [flatten: 1, first: 1]
   import String, only: [to_integer: 1]
