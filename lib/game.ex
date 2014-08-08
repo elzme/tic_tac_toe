@@ -7,7 +7,7 @@ defmodule Game do
   @setup Setup
 
   def new_game(board, player) do
-    current_board = board.generate_blank_board
+    current_board = board.generate_blank_board(9)
     players = @setup.setup_new_game
     game_loop(board, current_board, player, players)
   end

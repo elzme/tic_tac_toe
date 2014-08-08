@@ -3,9 +3,9 @@ defmodule TicTacToeBoardTest do
   @board  TicTacToeBoard
 
   test "#generate_blank_board: returns a blank board" do
-    assert @board.generate_blank_board == ["", "", "",
-                                          "", "", "",
-                                          "", "", ""]
+    assert @board.generate_blank_board(9) == ["", "", "",
+                                              "", "", "",
+                                              "", "", ""]
   end
 
   test "#update: updates the board with the given mark at the given position" do

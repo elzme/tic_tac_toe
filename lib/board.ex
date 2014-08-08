@@ -3,8 +3,8 @@ defmodule TicTacToeBoard do
   import Enum, only: [any?: 2, at: 2, filter_map: 3, with_index: 1]
   @blank_space ""
 
-  def generate_blank_board do
-    duplicate(@blank_space, 9)
+  def generate_blank_board(board_size) do
+    duplicate(@blank_space, board_size)
   end
 
   def update(current_board, position, mark) do
