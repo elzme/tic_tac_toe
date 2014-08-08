@@ -18,7 +18,7 @@ defmodule Player do
   def get_move(player, current_board) do
     cond do
       player.type == :human ->
-        get_human_player_move(player, current_board)
+        get_human_player_move(current_board)
       player.type == :smart ->
         get_unbeatable_computer_player_move(current_board, player.mark)
       player.type == :dumb ->
@@ -39,12 +39,12 @@ defmodule Player do
     @computer_strategy.get_best_move(current_board, computer_mark)
   end
 
-  defp get_human_player_move(player, current_board) do
+  defp get_human_player_move(current_board) do
     position = rstrip(@io.gets(@prompts.enter_move))
     if @rules.valid_move?(current_board, position) do
       to_integer(position) - 1
     else
-      get_human_player_move(player, current_board)
+      get_human_player_move(current_board)
     end
   end
 end
