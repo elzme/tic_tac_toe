@@ -2,6 +2,7 @@ defmodule CommandLineIO do
   import String, only: [rstrip: 1]
   @rules Rules
   @presenter BoardPresenter
+  @prompts TTTPrompts
 
   def write(msg) do
     IO.write(msg)
@@ -12,19 +13,19 @@ defmodule CommandLineIO do
   end
 
   def welcome_message do
-    write("Welcome to Elixir Tic Tac Toe!\n")
+    write(@prompts.welcome_to_game)
   end
 
   def display_board do
-    write("Here's what the board looks like:\n#{@presenter.display_sample_board}\n")
+    write(@prompts.heres_the_board(@presenter.display_sample_board))
   end
 
   def get_first_or_second do
-    rstrip(gets("Would you like to go first or second? Please enter 'first' or 'second'.\n "))
+    rstrip(gets(@prompts.first_or_second))
   end
 
   def get_opponent do
-    opponent = rstrip(gets("Would you like to play against the smart computer, or the dumb computer? Please enter 'smart' or 'dumb'.\n "))
+    opponent = rstrip(gets(@prompts.opponent))
     if opponent == "smart" || opponent == "dumb" do
       opponent
     else
@@ -33,11 +34,11 @@ defmodule CommandLineIO do
   end
 
   def ask_if_user_wants_to_play_again do
-    rstrip(gets("Would you like to play again? Please enter 'yes' or 'no'.\n"))
+    rstrip(gets(@prompts.play_again?))
   end
 
   def say_goodbye do
-    write("Bye!\n")
+    write(@prompts.bye)
   end
 
   def display_current_board(updated_board) do
