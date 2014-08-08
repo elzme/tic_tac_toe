@@ -1,22 +1,24 @@
-defmodule PlayerTest do
+defmodule ComputerPlayerTest do
   use ExUnit.Case
   import ExUnit.CaptureIO
+
+  @human_player HumanPlayer
+  @computer_player ComputerPlayer
 
   test "#get_move: gets the human's move when they are the current player" do
     current_board = ["", "", "",
                      "X", "", "",
                      "", "", ""]
     assert capture_io("1", fn ->
-      input = Player.get_move(%Player{}, current_board)
-      IO.write input
-    end) == "Please enter your move (1 - 9):\n0"
+      input = @human_player.get_move(%HumanPlayer{}, current_board)
+    end) == "Please enter your move (1 - 9):\n"
   end
 
   test "#get_move: gets the smart computer's move when it is the current player" do
     current_board = ["X", "O", "X",
                      "X", "O", "X",
                      "O", "X", ""]
-    assert Player.get_move(%Player{type: :smart, mark: "O"}, current_board) == 8
+    assert @computer_player.get_move(%ComputerPlayer{type: :smart, mark: "O"}, current_board) == 8
   end
 
 
@@ -24,7 +26,7 @@ defmodule PlayerTest do
     current_board = ["", "", "",
                      "", "", "",
                      "", "", ""]
-    computer_move = Player.get_move(%Player{type: :dumb, mark: "O"}, current_board)
+    computer_move = @computer_player.get_move(%ComputerPlayer{type: :dumb, mark: "O"}, current_board)
     assert is_integer(computer_move) == true
   end
 end
