@@ -1,5 +1,4 @@
 defmodule Game do
-  import String, only: [rstrip: 1]
   import List, only: [first: 1]
   import Enum, only: [reverse: 1]
   @io CommandLineIO

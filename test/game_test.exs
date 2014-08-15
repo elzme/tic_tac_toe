@@ -3,7 +3,6 @@ defmodule GameTest do
   import ExUnit.CaptureIO
   @game Game
   @board TicTacToeBoard
-  @player Player
 
   test "#the_computer_is_playing: tells the user that the computer is playing" do
     assert capture_io(fn -> @game.the_computer_is_playing(%EasyComputerPlayer{}) end) == "\nThe computer is playing...\n"
