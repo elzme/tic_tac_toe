@@ -10,12 +10,12 @@ defmodule HumanPlayer do
     %HumanPlayer{}
   end
 
-  def get_move(player, current_board) do
+  def get_move(current_board) do
     position = rstrip(@io.gets(@prompts.enter_move))
     if @rules.valid_move?(current_board, position) do
       to_integer(position) - 1
     else
-      get_move(player, current_board)
+      get_move(current_board)
     end
   end
 end

@@ -3,6 +3,10 @@ defmodule EasyComputerPlayer do
 
   defstruct type: :dumb, mark: "O"
 
+  def get_player_info do
+    %EasyComputerPlayer{}
+  end
+
   def get_move(current_board) do
     position = :crypto.rand_uniform(0,8)
     if @rules.valid_move?(current_board, position) do
