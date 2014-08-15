@@ -1,5 +1,5 @@
 defmodule CommandLineIO do
-  import String, only: [rstrip: 1]
+  import String, only: [match?: 2, replace: 3, rstrip: 1]
   @rules Rules
   @presenter BoardPresenter
   @prompts TTTPrompts
@@ -61,7 +61,10 @@ defmodule CommandLineIO do
     end
   end
 
-  def computer_playing_message do
-    write("\nThe computer is playing...\n")
+  def computer_playing_message(player) do
+    player = replace(to_string(player.type), "_", " ")
+    if String.match?(player, ~r/computer/) do
+      write("\nThe #{player} is playing...\n")
+    end
   end
 end

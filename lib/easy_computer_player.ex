@@ -1,7 +1,7 @@
 defmodule EasyComputerPlayer do
   @rules Rules
 
-  defstruct type: :dumb, mark: "O"
+  defstruct type: :dumb_computer, mark: "O"
 
   def mark do
     %EasyComputerPlayer{}.mark

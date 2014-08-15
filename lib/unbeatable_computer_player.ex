@@ -1,7 +1,7 @@
 defmodule UnbeatableComputerPlayer do
   @computer_strategy Negamax
 
-  defstruct type: :smart, mark: "O"
+  defstruct type: :smart_computer, mark: "O"
 
   def mark do
     %UnbeatableComputerPlayer{}.mark

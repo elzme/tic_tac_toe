@@ -13,7 +13,7 @@ defmodule Game do
 
   def game_loop(board_module, current_board_state, players) do
     current_player = first(players)
-    #the_computer_is_playing(current_player)
+    current_player_message(current_player)
     position = current_player.get_move(current_board_state)
     updated_board_state = board_module.update(current_board_state, position, current_player.mark)
     @io.display_current_board(updated_board_state)
@@ -25,10 +25,8 @@ defmodule Game do
     end
   end
 
-  def the_computer_is_playing(current_player) do
-    if current_player.type == :dumb || current_player.type == :smart do
-      @io.computer_playing_message
-    end
+  def current_player_message(current_player) do
+    @io.computer_playing_message(current_player)
   end
 
   def play_again?(board_module) do
