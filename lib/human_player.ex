@@ -6,8 +6,12 @@ defmodule HumanPlayer do
 
   defstruct type: :human, mark: "X"
 
-  def get_player_info do
-    %HumanPlayer{}
+  def mark do
+    %HumanPlayer{}.mark
+  end
+
+  def type do
+    %HumanPlayer{}.type
   end
 
   def get_move(current_board) do

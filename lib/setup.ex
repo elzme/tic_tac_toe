@@ -14,9 +14,9 @@ defmodule Setup do
   def create_players(type_of_opponent) do
     cond do
       type_of_opponent == "smart" ->
-        [@human_player.get_player_info, @unbeatable_computer_player.get_player_info]
+        [@human_player, @unbeatable_computer_player]
       type_of_opponent == "dumb" ->
-        [@human_player.get_player_info, @easy_computer_player.get_player_info]
+        [@human_player, @easy_computer_player]
     end
   end
 

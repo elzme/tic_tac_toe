@@ -3,11 +3,15 @@ defmodule UnbeatableComputerPlayer do
 
   defstruct type: :smart, mark: "O"
 
-  def get_player_info do
-    %UnbeatableComputerPlayer{}
+  def mark do
+    %UnbeatableComputerPlayer{}.mark
+  end
+
+  def type do
+    %UnbeatableComputerPlayer{}.type
   end
 
   def get_move(current_board) do
-    @computer_strategy.get_best_move(current_board, :mark)
+    @computer_strategy.get_best_move(current_board, "O")
   end
 end

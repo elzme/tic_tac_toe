@@ -3,8 +3,12 @@ defmodule EasyComputerPlayer do
 
   defstruct type: :dumb, mark: "O"
 
-  def get_player_info do
-    %EasyComputerPlayer{}
+  def mark do
+    %EasyComputerPlayer{}.mark
+  end
+
+  def type do
+    %EasyComputerPlayer{}.type
   end
 
   def get_move(current_board) do

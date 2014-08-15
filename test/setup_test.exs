@@ -2,6 +2,10 @@ defmodule SetupTest do
   use ExUnit.Case
   import ExUnit.CaptureIO
 
+  @human_player HumanPlayer
+  @unbeatable_computer_player UnbeatableComputerPlayer
+  @easy_computer_player EasyComputerPlayer
+
   test "#welcome: prints a welcome message and a sample board" do
     assert capture_io(fn -> Setup.welcome end) == "Welcome to Elixir Tic Tac Toe!\n" <>
                                                   "Here's what the board looks like:\n" <>
@@ -27,25 +31,25 @@ defmodule SetupTest do
   end
 
   test "#create_players: creates a human and a smart computer player" do
-    assert Setup.create_players("smart") == [%HumanPlayer{}, %UnbeatableComputerPlayer{}]
+    assert Setup.create_players("smart") == [@human_player, @unbeatable_computer_player]
   end
 
   test "#create_players: creates a human and a dumb computer player" do
-    assert Setup.create_players("dumb") == [%HumanPlayer{}, %EasyComputerPlayer{}]
+    assert Setup.create_players("dumb") == [@human_player, @easy_computer_player]
   end
 
   test "#set_first_player: sets the human player as the first if the user answers `first`" do
-    players = [%HumanPlayer{}, %UnbeatableComputerPlayer{}]
-    assert Setup.set_first_player("first", players ) == [%HumanPlayer{}, %UnbeatableComputerPlayer{}]
+    players = [@human_player, @unbeatable_computer_player]
+    assert Setup.set_first_player("first", players ) == [@human_player, @unbeatable_computer_player]
   end
 
   test "#set_first_player: sets the computer player as the first if the user answers `second`" do
-    players = [%HumanPlayer{}, %UnbeatableComputerPlayer{}]
-    assert Setup.set_first_player("second", players ) == [%UnbeatableComputerPlayer{}, %HumanPlayer{}]
+    players = [@human_player, @unbeatable_computer_player]
+    assert Setup.set_first_player("second", players ) == [@unbeatable_computer_player, @human_player]
   end
 
   test "#set_first_player: sets the human player as the first by default" do
-    players = [%HumanPlayer{}, %UnbeatableComputerPlayer{}]
-    assert Setup.set_first_player("", players ) == [%HumanPlayer{}, %UnbeatableComputerPlayer{}]
+    players = [@human_player, @unbeatable_computer_player]
+    assert Setup.set_first_player("", players ) == [@human_player, @unbeatable_computer_player]
   end
 end
