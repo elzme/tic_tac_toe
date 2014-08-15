@@ -9,7 +9,7 @@ defmodule HumanPlayerTest do
                      "X", "", "",
                      "", "", ""]
     assert capture_io("1", fn ->
-      input = @human_player.get_move(current_board)
+      @human_player.get_move(current_board)
     end) == "Please enter your move (1 - 9):\n"
   end
 end
