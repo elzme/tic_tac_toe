@@ -2,9 +2,13 @@ defmodule SetupTest do
   use ExUnit.Case
   import ExUnit.CaptureIO
 
+  @human_player HumanPlayer
+  @unbeatable_computer_player UnbeatableComputerPlayer
+  @easy_computer_player EasyComputerPlayer
+
   test "#welcome: prints a welcome message and a sample board" do
     assert capture_io(fn -> Setup.welcome end) == "Welcome to Elixir Tic Tac Toe!\n" <>
-                                                   "Here's what the board looks like:\n" <>
+                                                  "Here's what the board looks like:\n" <>
                                                               " 1 | 2 | 3 \n" <>
                                                               " ___________ \n" <>
                                                               " 4 | 5 | 6 \n" <>
@@ -27,25 +31,25 @@ defmodule SetupTest do
   end
 
   test "#create_players: creates a human and a smart computer player" do
-    assert Setup.create_players("smart") == [%Player{}, %Player{type: :smart, mark: "O"}]
+    assert Setup.create_players("smart") == [@human_player, @unbeatable_computer_player]
   end
 
   test "#create_players: creates a human and a dumb computer player" do
-    assert Setup.create_players("dumb") == [%Player{}, %Player{type: :dumb, mark: "O"}]
+    assert Setup.create_players("dumb") == [@human_player, @easy_computer_player]
   end
 
   test "#set_first_player: sets the human player as the first if the user answers `first`" do
-    players = [%Player{}, %Player{type: :smart_computer, mark: "O"}]
-    assert Setup.set_first_player("first", players ) == [%Player{}, %Player{type: :smart_computer, mark: "O"}]
+    players = [@human_player, @unbeatable_computer_player]
+    assert Setup.set_first_player("first", players ) == [@human_player, @unbeatable_computer_player]
   end
 
   test "#set_first_player: sets the computer player as the first if the user answers `second`" do
-    players = [%Player{}, %Player{type: :smart_computer, mark: "O"}]
-    assert Setup.set_first_player("second", players ) == [%Player{type: :smart_computer, mark: "O"}, %Player{}]
+    players = [@human_player, @unbeatable_computer_player]
+    assert Setup.set_first_player("second", players ) == [@unbeatable_computer_player, @human_player]
   end
 
   test "#set_first_player: sets the human player as the first by default" do
-    players = [%Player{}, %Player{type: :smart_computer, mark: "O"}]
-    assert Setup.set_first_player("", players ) == [%Player{}, %Player{type: :smart_computer, mark: "O"}]
+    players = [@human_player, @unbeatable_computer_player]
+    assert Setup.set_first_player("", players ) == [@human_player, @unbeatable_computer_player]
   end
 end

@@ -1,7 +1,10 @@
 defmodule Setup do
   import Enum, only: [reverse: 1]
   @io  CommandLineIO
-  @player Player
+  @computer_player ComputerPlayer
+  @human_player HumanPlayer
+  @unbeatable_computer_player UnbeatableComputerPlayer
+  @easy_computer_player EasyComputerPlayer
 
   def welcome do
     print_welcome_message
@@ -9,7 +12,12 @@ defmodule Setup do
   end
 
   def create_players(type_of_opponent) do
-    [@player.create_human_player, @player.create_computer_player(type_of_opponent)]
+    cond do
+      type_of_opponent == "smart" ->
+        [@human_player, @unbeatable_computer_player]
+      type_of_opponent == "dumb" ->
+        [@human_player, @easy_computer_player]
+    end
   end
 
   def set_first_player(first_or_second, players) do
