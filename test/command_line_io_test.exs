@@ -58,17 +58,19 @@ defmodule CommandLineIOTest do
   end
 
   test "#get_first_or_second: returns either 'first' if the user enters 'first'" do
-    assert capture_io("first", fn ->
-      result = @io.get_first_or_second
-      IO.write result
-    end) == "Would you like to go first or second? Please enter 'first' or 'second'.\n first"
+    captured_results = assert capture_io("first", fn ->
+                        result = @io.get_first_or_second
+                        IO.write result
+                      end)
+    assert String.slice(captured_results, -5..-1) == "first"
   end
 
   test "#get_first_or_second: returns either 'second' if the user enters 'second'" do
-    assert capture_io("second", fn ->
-      result = @io.get_first_or_second
-      IO.write result
-    end) == "Would you like to go first or second? Please enter 'first' or 'second'.\n second"
+    captured_results = assert capture_io("second", fn ->
+                        result = @io.get_first_or_second
+                        IO.write result
+                      end)
+    assert String.slice(captured_results, -6..-1) == "second"
   end
 
   test "#get_first_or_second: continues to prompt the user until they enter 'first' or 'second' " do
@@ -82,17 +84,19 @@ defmodule CommandLineIOTest do
   end
 
   test "#get_opponent: returns the 'smart' if the user enters 'smart'" do
-    assert capture_io("smart", fn ->
-      result = @io.get_opponent
-      IO.write result
-    end) == "Would you like to play against the smart computer, or the dumb computer? Please enter 'smart' or 'dumb'.\n smart"
+    captured_results = capture_io("smart", fn ->
+                         result = @io.get_opponent
+                         IO.write result
+                       end)
+    assert String.slice(captured_results, -5..-1 ) == "smart"
   end
 
   test "#get_opponent: returns the 'dumb' if the user enters 'dumb'" do
-    assert capture_io("dumb", fn ->
-      result = @io.get_opponent
-      IO.write result
-    end) == "Would you like to play against the smart computer, or the dumb computer? Please enter 'smart' or 'dumb'.\n dumb"
+    captured_results = capture_io("dumb", fn ->
+                         result = @io.get_opponent
+                         IO.write result
+                     end)
+    assert String.slice(captured_results, -4..-1) == "dumb"
   end
 
   test "#get_opponent: continues to prompt the user until they enter 'smart' or 'dumb'" do
