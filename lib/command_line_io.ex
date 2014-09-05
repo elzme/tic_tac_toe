@@ -21,7 +21,12 @@ defmodule CommandLineIO do
   end
 
   def get_first_or_second do
-    rstrip(gets(@prompts.first_or_second))
+    first_or_second = rstrip(gets(@prompts.first_or_second))
+    if first_or_second == "first" || first_or_second == "second" do
+      first_or_second
+    else
+      get_first_or_second
+    end
   end
 
   def get_opponent do
@@ -29,7 +34,7 @@ defmodule CommandLineIO do
     if opponent == "smart" || opponent == "dumb" do
       opponent
     else
-      opponent
+      get_opponent
     end
   end
 
