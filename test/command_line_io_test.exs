@@ -80,4 +80,28 @@ defmodule CommandLineIOTest do
     end) == "Would you like to go first or second? Please enter 'first' or 'second'.\n " <>
             "Would you like to go first or second? Please enter 'first' or 'second'.\n first"
   end
+
+  test "#get_opponent: returns the 'smart' if the user enters 'smart'" do
+    assert capture_io("smart", fn ->
+      result = @io.get_opponent
+      IO.write result
+    end) == "Would you like to play against the smart computer, or the dumb computer? Please enter 'smart' or 'dumb'.\n smart"
+  end
+
+  test "#get_opponent: returns the 'dumb' if the user enters 'dumb'" do
+    assert capture_io("dumb", fn ->
+      result = @io.get_opponent
+      IO.write result
+    end) == "Would you like to play against the smart computer, or the dumb computer? Please enter 'smart' or 'dumb'.\n dumb"
+  end
+
+  test "#get_opponent: continues to prompt the user until they enter 'smart' or 'dumb'" do
+    incorrect_input = "test"
+    correct_input = "smart"
+    assert capture_io("#{incorrect_input}\n#{correct_input}", fn ->
+      result = @io.get_opponent
+      IO.write result
+    end) == "Would you like to play against the smart computer, or the dumb computer? Please enter 'smart' or 'dumb'.\n " <>
+            "Would you like to play against the smart computer, or the dumb computer? Please enter 'smart' or 'dumb'.\n smart"
+  end
 end
