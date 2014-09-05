@@ -70,6 +70,8 @@ defmodule CommandLineIO do
     player = replace(to_string(player.type), "_", " ")
     if String.match?(player, ~r/computer/) do
       write("\nThe #{player} is playing...\n")
+    else
+      write("It's your turn!\n")
     end
   end
 end

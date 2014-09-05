@@ -6,9 +6,8 @@ defmodule CommandLineIOTest do
   @unbeatable_computer_player UnbeatableComputerPlayer
   @human_player HumanPlayer
 
-
   test "#write: displays the given message" do
-    assert capture_io(fn -> CommandLineIO.write("test") end) == "test"
+    assert capture_io(fn -> @io.write("test") end) == "test"
   end
 
   test "#gets: gets input from the user" do
@@ -51,10 +50,10 @@ defmodule CommandLineIOTest do
     end) == "\nThe smart computer is playing...\n"
   end
 
-  test "#the_computer_is_playing: doesn't do anything if its the human's turn" do
+  test "#the_computer_is_playing: tells the user it's their turn" do
     assert capture_io(fn ->
       @io.computer_playing_message(@human_player)
-    end) == ""
+    end) == "It's your turn!\n"
   end
 
   test "#get_first_or_second: returns either 'first' if the user enters 'first'" do
